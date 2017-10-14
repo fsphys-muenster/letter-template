@@ -1,6 +1,6 @@
 % Autor: Simon May
-% Datum: 2016-10-17
-\ProvidesFile{fsphys.lco}[2016/10/17 lco
+% Datum: 2017-06-19
+\ProvidesFile{fsphys.lco}[2017/06/19 lco
 	(Simon May, Fachschaft Physik)]
 
 % Pakete und deren Einstellungen
@@ -8,54 +8,70 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 
-% Überflüssige Warnungen loswerden
-\usepackage{silence}
-\WarningFilter[spurious]{csquotes}{Using preliminary 'polyglossia' interface}
-\WarningFilter[fontshape]{latexfont}{Font shape }
-\WarningFilter[fontshape]{latexfont}{Some font shapes were not available, defaults substituted}
-\ActivateWarningFilters[spurious]
-\ActivateWarningFilters[fontshape]
-
-% Schriftarten (Meta) einstellen
 \usepackage{unicode-math}
-\setmainfont{Meta}[Path={fonts/},
-	UprightFont=*-Regular,
+\setmainfont{MetaOffcPro}[Path=fonts/,
+	Extension=.ttf,
+	UprightFont=*-Norm,
 	UprightFeatures={
-		SmallCapsFont={*-Normal-Caps}
+		SmallCapsFont={MetaScOffcPro-Norm}
 	},
-	ItalicFont=*-Italic,
+	ItalicFont=*-NormIta,
+	ItalicFeatures={
+		SmallCapsFont={MetaScOffcPro-NormIta}
+	},
 	BoldFont=*-Bold,
 	BoldFeatures={
-		SmallCapsFont={*-Medium-Caps}
+		SmallCapsFont={MetaScOffcPro-Bold}
 	},
 	BoldItalicFont=*-Bold,
-	BoldItalicFeatures={FakeSlant}
+	BoldItalicFeatures={FakeSlant},
+	Numbers=OldStyle,
 ]
-\setsansfont{Meta}[Path={fonts/},
-	UprightFont=*-Regular,
+\setsansfont{MetaOffcPro}[Path=fonts/,
+	Extension=.ttf,
+	UprightFont=*-Norm,
 	UprightFeatures={
-		SmallCapsFont={*-Normal-Caps}
+		SmallCapsFont={MetaScOffcPro-Norm}
 	},
-	ItalicFont=*-Italic,
+	ItalicFont=*-NormIta,
+	ItalicFeatures={
+		SmallCapsFont={MetaScOffcPro-NormIta}
+	},
 	BoldFont=*-Bold,
 	BoldFeatures={
-		SmallCapsFont={*-Medium-Caps}
+		SmallCapsFont={MetaScOffcPro-Bold}
 	},
 	BoldItalicFont=*-Bold,
-	BoldItalicFeatures={FakeSlant}
+	BoldItalicFeatures={FakeSlant},
+	Numbers=OldStyle,
 ]
-% \mathaccent passt wegen unterschiedlicher Schriftarten nicht für lateinische Buchstaben!
+
 \setmathfont{Latin Modern Math}
-\setmathfont[range=\mathup/{greek,Greek}, Scale=MatchLowercase]{Free Sans}
-\setmathfont[range=\mathit/{greek,Greek}, Scale=MatchLowercase]{Free Sans Oblique}
-\setmathfont[range=\mathaccent, Scale=MatchLowercase]{Free Sans}
-\setmathfont[range=\mathup/{latin,Latin,num}, Path={fonts/}]{MetaLF-Regular.ttf}
-\setmathfont[range=\mathit/{latin,Latin,num}, Path={fonts/}]{MetaLF-Italic.ttf}
+\setmathfont[range=up/{greek,Greek,latin,Latin,num}, Path=fonts/,
+	Numbers=Lining]{MetaOffcPro-Norm.ttf}
+\setmathfont[range=it/{greek,Greek,latin,Latin,num}, Path=fonts/,
+	Numbers=Lining]{MetaOffcPro-NormIta.ttf}
+\setmathfont[range=bfup/{greek,Greek,latin,Latin,num}, Path=fonts/,
+	Numbers=Lining]{MetaOffcPro-Bold.ttf}
 % Symbole (leider enthält Meta nicht das Symbol ∓)
-% Warum funktioniert `\§ nicht?
-\setmathfont[range={`\+, `\-, `\×, `\÷, `\⋅, `\*, `\/, `\±, `\%,
-	`\!, `\?, `\., `\,, `\:, `\;, `\€, `\$, `\£, `\¥, `\&, `\#, `\@, `\§},
-	Path={fonts/}]{MetaLF-Regular.ttf}
+\setmathfont[range={`\+, `\-, `\×, `\÷, `\⋅, `\*, `\/, `\±, `\%, `\‰,
+	`\!, `\?, `\., `\,, `\:, `\;, `\€, `\$, `\£, `\¥, `\&, `\#, `\@, `\§,
+	`\=, `\≠, `\≈, `\<, `\>, `\≤, `\≥, \partial, `\∞},
+	Path=fonts/]{MetaOffcPro-Norm.ttf}
+% XXX Am Ende wieder eine echte Mathe-Schriftart laden (range ist egal),
+% um Fehler in unicode-math/LuaTeX zu umgehen
+% s. https://tex.stackexchange.com/questions/95304
+%    https://github.com/wspr/unicode-math/issues/353
+\setmathfont[range=\int]{Latin Modern Math}
+
+% Schriftart für \mathrm etc. übernehmen
+\setmathfontface\mathrm{FreeSans}
+\setmathfontface\mathit{FreeSans Oblique}
+\setmathfontface\mathbf{FreeSans Bold}
+% Workaround für Bug in unicode-math
+% s. https://github.com/wspr/unicode-math/issues/331
+%    https://github.com/wspr/unicode-math/issues/387
+\let\mathbfup\mathbf
 
 % Spracheinstellung
 \usepackage{polyglossia}
@@ -138,6 +154,8 @@
 % Rücksende-Adresszeile nicht unterstreichen („plain“);
 % Breites rechtes Absenderfeld
 \KOMAoptions{fromlogo, backaddress=plain, locfield=wide}
+% Signatur rechtsbündig
+\renewcommand*{\raggedsignature}{\raggedright}
 % Breite und Höhe des rechten Info-Feldes (unter dem FS-Logo) könnten hier
 % manuell eingestellt werden
 %\@setplength{locwidth}{16em}
@@ -154,11 +172,11 @@
 \setkomavar{place}{Münster}
 \setkomavar{subject}{\betreff}
 \setkomavar{signature}{i.\,A.\ \fachschaftler}
-\setkomavar{fromlogo}{\includegraphics[width=5cm]{Fachschaft_Physik_Logo_v2014_2.pdf}}
+\setkomavar{fromlogo}{\includegraphics[width=5cm]{fs_physik_logo_v2014_2.pdf}}
 
 % Kopfzeile der ersten seite
 \setkomavar{firsthead}{
-	\includegraphics[width=7.5cm]{wwu_logo.pdf}
+	\hspace{-3.5mm}\includegraphics[width=7.5cm]{wwu_logo_2017_4c.pdf}
 	\hfill
 	\raisebox{-4mm}{\usekomavar{fromlogo}}
 }

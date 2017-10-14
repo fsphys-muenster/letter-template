@@ -1,3 +1,7 @@
+# don’t accidentally commit font files
+tex/fonts/*.*
+
+### .gitignore template for TeX from GitHub
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

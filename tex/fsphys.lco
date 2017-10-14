@@ -1,4 +1,4 @@
-\ProvidesFile{fsphys.lco}[2017/10/14 lco
+\ProvidesFile{fsphys.lco}[2017/10/15 lco
 	(Simon May, Fachschaft Physik)]
 
 % Pakete und deren Einstellungen
@@ -140,11 +140,16 @@
 
 % Einstellungen für scrlttr2
 % ===========================================================
+% Zu den Abständen auf einer DIN A4-Seite im WWU Corporate Design siehe
+% https://www.uni-muenster.de/intern/marketing/corporatedesign/cdmanual.html
+% bzw.
+% https://www.uni-muenster.de/imperia/md/content/wwu/cd/download/print/17.01.13_verma__ung_din-formate_final.pdf
+
 % FS-Logo anzeigen;
 % Rücksende-Adresszeile nicht unterstreichen („plain“);
 % Breites rechtes Absenderfeld
 \KOMAoptions{fromlogo, backaddress=plain, locfield=wide}
-% Signatur rechtsbündig
+% Signatur linksbündig
 \renewcommand*{\raggedsignature}{\raggedright}
 % Breite und Höhe des rechten Info-Feldes (unter dem FS-Logo) könnten hier
 % manuell eingestellt werden
@@ -162,24 +167,28 @@
 \setkomavar{place}{Münster}
 \setkomavar{subject}{\betreff}
 \setkomavar{signature}{i.\,A.\ \fachschaftler}
-\setkomavar{fromlogo}{\includegraphics[width=5cm]{fs_physik_logo_v2014_2.pdf}}
+% Max. Ausmaße für das „Institutslogo“: 60mm×20mm
+\setkomavar{fromlogo}{\includegraphics[width=60mm]{fs_physik_logo_v2014_2.pdf}}
 
-% Kopfzeile der ersten seite
+% Kopfzeile der ersten Seite
 \setkomavar{firsthead}{
-	\hspace{-3.5mm}\includegraphics[width=7.5cm]{wwu_logo_2017_4c.pdf}
+	% Das Logo in der PDF-Datei hat bereits die geforderte Breite von 75mm.
+	% Insgesamt hat der Inhalt der PDF-Datei eine Breite von 80mm (enthält
+	% zu beiden Seiten einen horizontalen Abstand von 2,5mm)
+	\hspace{-3.5mm}\includegraphics{wwu_logo_2017_4c.pdf}
 	\hfill
-	\raisebox{-4mm}{\usekomavar{fromlogo}}
+	\usekomavar{fromlogo}
 }
 % Rücksende-Adresszeile
 \setkomavar{backaddress}{WWU~| Fachschaftsrat Physik~| Wilhelm-Klemm-Str.~9~| 48149~Münster}
 % Rechtes Absenderfeld (unter FS-Logo)
 \setkomavar{location}{%
-	\scriptsize%
-	\begin{tabular}{@{} r l @{}}
+	\footnotesize%
+	\begin{tabular}{@{} r @{\hspace{5mm}} l @{}}
 		& \small Fachschaftsrat Physik \\[\medskipamount]
 		& c/o Institut für Kernphysik \\
 		& Wilhelm-Klemm-Str.~9 \\
-		& 48149~Münster \\[\bigskipamount]
+		& 48149~Münster \\[\medskipamount]
 		Bearbeiter & \fachschaftler \\[\medskipamount]
 		Tel. & \usekomavar{fromphone} \\
 		Fax  & \usekomavar{fromfax} \\

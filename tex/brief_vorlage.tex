@@ -1,8 +1,8 @@
 % Autor: Simon May
-% Datum: 2015-01-24
+% Datum: 2016-10-17
 \documentclass[
 	% FS-Brief-Vorlage
-	fachschaft,
+	fsphys,
 	% Papierformat (A4)
 	a4paper,
 	% Schriftgröße
@@ -10,15 +10,18 @@
 	% Seitengröße korrekt in Ausgabedatei schreiben
 	pagesize,
 	% Sprache (deutsch)
-	german
+	ngerman
 ]{scrlttr2}
 
 % Bearbeiter/Autor angeben
 \renewcommand{\fachschaftler}{VORNAME NAME}
-% Datum eintragen: \formatdate{dd}{mm}{yyyy}
-\setkomavar{date}{\formatdate{11}{11}{1111}}
+% Datum eintragen: \DTMdate{yyyy-mm-dd}
+\renewcommand{\datum}{\DTMdate{1234-11-11}}
 % Betreff eintragen
-\setkomavar{subject}{BETREFF}
+\renewcommand{\betreff}{BETREFF}
+
+% Bei Rechnungen: Rechnungsnummer angeben (muss eindeutig sein!)
+%\setkomavar{invoice}{######}
 
 \begin{document}
 

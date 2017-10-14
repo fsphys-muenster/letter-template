@@ -1,0 +1,181 @@
+% Autor: Simon May
+% Datum: 2016-10-17
+\ProvidesFile{fsphys.lco}[2016/10/17 lco
+	(Simon May, Fachschaft Physik)]
+
+% Pakete und deren Einstellungen
+% ===========================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% Überflüssige Warnungen loswerden
+\usepackage{silence}
+\WarningFilter[spurious]{csquotes}{Using preliminary 'polyglossia' interface}
+\WarningFilter[fontshape]{latexfont}{Font shape }
+\WarningFilter[fontshape]{latexfont}{Some font shapes were not available, defaults substituted}
+\ActivateWarningFilters[spurious]
+\ActivateWarningFilters[fontshape]
+
+% Schriftarten (Meta) einstellen
+\usepackage{unicode-math}
+\setmainfont{Meta}[Path={fonts/},
+	UprightFont=*-Regular,
+	UprightFeatures={
+		SmallCapsFont={*-Normal-Caps}
+	},
+	ItalicFont=*-Italic,
+	BoldFont=*-Bold,
+	BoldFeatures={
+		SmallCapsFont={*-Medium-Caps}
+	},
+	BoldItalicFont=*-Bold,
+	BoldItalicFeatures={FakeSlant}
+]
+\setsansfont{Meta}[Path={fonts/},
+	UprightFont=*-Regular,
+	UprightFeatures={
+		SmallCapsFont={*-Normal-Caps}
+	},
+	ItalicFont=*-Italic,
+	BoldFont=*-Bold,
+	BoldFeatures={
+		SmallCapsFont={*-Medium-Caps}
+	},
+	BoldItalicFont=*-Bold,
+	BoldItalicFeatures={FakeSlant}
+]
+% \mathaccent passt wegen unterschiedlicher Schriftarten nicht für lateinische Buchstaben!
+\setmathfont{Latin Modern Math}
+\setmathfont[range=\mathup/{greek,Greek}, Scale=MatchLowercase]{Free Sans}
+\setmathfont[range=\mathit/{greek,Greek}, Scale=MatchLowercase]{Free Sans Oblique}
+\setmathfont[range=\mathaccent, Scale=MatchLowercase]{Free Sans}
+\setmathfont[range=\mathup/{latin,Latin,num}, Path={fonts/}]{MetaLF-Regular.ttf}
+\setmathfont[range=\mathit/{latin,Latin,num}, Path={fonts/}]{MetaLF-Italic.ttf}
+% Symbole (leider enthält Meta nicht das Symbol ∓)
+% Warum funktioniert `\§ nicht?
+\setmathfont[range={`\+, `\-, `\×, `\÷, `\⋅, `\*, `\/, `\±, `\%,
+	`\!, `\?, `\., `\,, `\:, `\;, `\€, `\$, `\£, `\¥, `\&, `\#, `\@, `\§},
+	Path={fonts/}]{MetaLF-Regular.ttf}
+
+% Spracheinstellung
+\usepackage{polyglossia}
+\setmainlanguage{german}
+
+% Typographische Verbesserungen (Verbot mancher Ligaturen)
+\usepackage{selnolig}
+% Typographische Verbesserungen
+\usepackage{microtype}
+
+% Daten/Zeiten formatieren
+\usepackage[useregional]{datetime2}
+% Formatierung von Telefonnummern
+\usepackage{phonenumbers}
+% Optionen für Listen
+\usepackage{enumitem}
+% „Schöne“ Brüche im Fließtext mit \sfrac
+\usepackage{xfrac}
+% Ermöglicht die Nutzung von „\SI{Zahl}{Einheit}“
+\usepackage{siunitx}
+% Automatisches Umwandeln von Anführungszeichen
+\usepackage{csquotes}
+
+% Farben ermöglichen
+\usepackage{xcolor}
+% Paket für Bilder-Einbindung (EPS, PNG, JPG, PDF)
+\usepackage{graphicx}
+% .tex-Dateien mit \includegraphics einbiden
+\usepackage{gincltex}
+% Bessere Verarbeitung von Dateinamen für \includegraphics etc.
+\usepackage{grffile}
+
+% Links/Verweise in der PDF-Datei
+\usepackage[unicode]{hyperref}
+
+
+% Mehr Abstand in Tabellen
+\renewcommand{\arraystretch}{1.2}
+% Formeln immer fett setzen, wenn Text fett gesetzt wird
+\g@addto@macro\bfseries{\boldmath}
+% csquotes: Anführungszeichen automatisch umwandeln
+\MakeOuterQuote{"}
+% phonenumbers
+\setphonenumbers{
+	country=DE,
+	foreign=international,
+	area-code-sep=space
+}
+% siunitx
+\sisetup{
+	locale=DE,
+	binary-units,
+	quotient-mode=fraction,
+	per-mode=fraction,
+	fraction-function=\sfrac,
+	detect-weight
+}
+% hyperref
+\AtEndPreamble{
+	\hypersetup{
+		% Infos in die PDF-Datei schreiben
+		pdfauthor={Fachschaftsrat Physik der WWU Münster, \fachschaftler},
+		pdftitle={FS-Brief: \betreff},
+		pdfsubject={Ausgehender Brief der Fachschaft Physik},
+		% Links in der PDF-Datei mit Kasten der Breite 0.5pt versehen
+		pdfborder={0 0 0.5}
+	}
+}
+
+% Neue Befehle
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\fachschaftler}{N.\,N.}
+\newcommand{\datum}{-~leer~-}
+\newcommand{\betreff}{-~leer~-}
+
+
+% Einstellungen für scrlttr2
+% ===========================================================
+% FS-Logo anzeigen;
+% Rücksende-Adresszeile nicht unterstreichen („plain“);
+% Breites rechtes Absenderfeld
+\KOMAoptions{fromlogo, backaddress=plain, locfield=wide}
+% Breite und Höhe des rechten Info-Feldes (unter dem FS-Logo) könnten hier
+% manuell eingestellt werden
+%\@setplength{locwidth}{16em}
+%\@setplength{locheight}{28ex}
+
+% Absender-Informationen
+\setkomavar{fromname}{Fachschaftsrat Physik}
+\setkomavar{fromaddress}{c/o Institut für Kernphysik\\Wilhelm-Klemm-Str.~9\\48149~Münster}
+\setkomavar{fromemail}{\email{fsphys@uni-muenster.de}}
+\setkomavar{fromurl}{\url{https://www.uni-muenster.de/Physik.FSPHYS}}
+\setkomavar{fromphone}{\phonenumber{0251 83}[34985]}
+\setkomavar{fromfax}{\phonenumber{0251 83}[34962]}
+\setkomavar{date}{\datum}
+\setkomavar{place}{Münster}
+\setkomavar{subject}{\betreff}
+\setkomavar{signature}{i.\,A.\ \fachschaftler}
+\setkomavar{fromlogo}{\includegraphics[width=5cm]{Fachschaft_Physik_Logo_v2014_2.pdf}}
+
+% Kopfzeile der ersten seite
+\setkomavar{firsthead}{
+	\includegraphics[width=7.5cm]{wwu_logo.pdf}
+	\hfill
+	\raisebox{-4mm}{\usekomavar{fromlogo}}
+}
+% Rücksende-Adresszeile
+\setkomavar{backaddress}{WWU~|~Fachschaftsrat Physik~|~Wilhelm-Klemm-Str.~9~|~48149 Münster}
+% Rechtes Absenderfeld (unter FS-Logo)
+\setkomavar{location}{%
+	\scriptsize%
+	\begin{tabular}{@{} r l @{}}
+		& \small Fachschaftsrat Physik \\[\medskipamount]
+		& c/o Institut für Kernphysik \\
+		& Wilhelm-Klemm-Str.~9 \\
+		& 48149~Münster \\[\bigskipamount]
+		Bearbeiter & \fachschaftler \\[\medskipamount]
+		Tel. & \usekomavar{fromphone} \\
+		Fax & \usekomavar{fromfax} \\
+		Mail & \usekomavar{fromemail} \\
+	\end{tabular}
+}
+

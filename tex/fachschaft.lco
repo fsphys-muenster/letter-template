@@ -1,0 +1,127 @@
+% Autor: Simon May
+% Datum: 2015-01-24
+\ProvidesFile{fachschaft.lco}[2015/01/24 lco
+	(Simon May, Fachschaft Physik)]
+
+% Pakete und deren Einstellungen
+%===========================================================
+\usepackage{amsmath}
+% Schriftarten (Meta) einstellen
+\usepackage{unicode-math}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Meta}[Path={fonts/},
+	UprightFont=*-Regular,
+	UprightFeatures={
+	SmallCapsFont={*-RegularSC}
+	},
+	ItalicFont=*-Italic,
+	BoldFont=*-Bold,
+	BoldFeatures={
+	SmallCapsFont={*-BoldSC}
+	},
+	BoldItalicFont=*-Bold,
+	BoldItalicFeatures={FakeSlant}
+]
+\setsansfont{Meta}[Path={fonts/},
+	UprightFont=*-Regular,
+	UprightFeatures={
+	SmallCapsFont={*-RegularSC}
+	},
+	ItalicFont=*-Italic,
+	BoldFont=*-Bold,
+	BoldFeatures={
+	SmallCapsFont={*-BoldSC}
+	},
+	BoldItalicFont=*-Bold,
+	BoldItalicFeatures={FakeSlant}
+]
+\setmathfont{Latin Modern Math}
+\setmathfont[range=\mathup/{greek,Greek}, Scale=MatchLowercase]{Free Sans}
+\setmathfont[range=\mathit/{greek,Greek}, Scale=MatchLowercase]{Free Sans Oblique}
+\setmathfont[range=\mathup/{latin,Latin,num}, Path={fonts/}]{Meta-Regular.ttf}
+\setmathfont[range=\mathit/{latin,Latin,num}, Path={fonts/}]{Meta-Italic.ttf}
+\usepackage{polyglossia}
+\setmainlanguage{german}
+
+% Einige LaTeX-Bugs beheben
+\usepackage{fixltx2e}
+% Typographische Verbesserungen (Verbot mancher Ligaturen)
+\usepackage{selnolig}
+% Typographische Verbesserungen
+\usepackage{microtype}
+% Daten/Zeiten formatieren
+\usepackage{datetime}
+% Farben ermöglichen
+\usepackage{xcolor}
+% Paket für Bilder-Einbindung (EPS, PNG, JPG, PDF)
+\usepackage{graphicx}
+% Automatisches Umwandeln von Anführungszeichen
+\usepackage{csquotes}
+% Links/Verweise in der PDF-Datei
+\usepackage[unicode]{hyperref}
+
+% hyperref
+\hypersetup{
+	% Infos in die PDF-Datei schreiben
+	pdfinfo={
+		Author={Fachschaftsrat Physik der WWU Münster}
+	},
+	% Links in der PDF-Datei mit Kasten der Breite 0.5pt versehen
+	pdfborder={0 0 0.5}
+}
+
+% csquotes: Anführungszeichen automatisch umwandeln
+\MakeOuterQuote{"}
+
+% Mehr Abstand in Tabelle
+\renewcommand{\arraystretch}{1.2}
+
+% Neue Befehle
+\newcommand{\email}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand{\fachschaftler}{}
+
+
+% Einstellungen für scrlettr2
+%===========================================================
+% FS-Logo anzeigen;
+% Rücksende-Adresszeile nicht unterstreichen ("plain");
+% Breites rechtes Absenderfeld
+\KOMAoptions{fromlogo, backaddress=plain, locfield=wide}
+% Breite und Höhe des rechten Info-Feldes (unter dem FS-Logo) könnten hier
+% manuell eingestellt werden
+%\@setplength{locwidth}{16em}
+%\@setplength{locheight}{28ex}
+
+% Absender-Informationen
+\setkomavar{fromname}{Fachschaftsrat Physik}
+\setkomavar{fromaddress}{c/o Institut für Kernphysik\\Wilhelm-Klemm-Str.\ 9\\48149 Münster}
+\setkomavar{fromemail}{\email{fsphys@uni-muenster.de}}
+\setkomavar{fromurl}{\url{https://www.uni-muenster.de/Physik.FSPHYS}}
+\setkomavar{fromphone}{+49 251 83-34985}
+\setkomavar{fromfax}{+49 251 93-34962}
+\setkomavar{place}{Münster}
+\setkomavar{signature}{i.\,A.\ \fachschaftler}
+\setkomavar{fromlogo}{\includegraphics[width=5cm]{Fachschaft_Physik_Logo_v2014_2.pdf}}
+
+% Kopfzeile der ersten seite
+\setkomavar{firsthead}{
+	\includegraphics[width=7.5cm]{wwu_logo.pdf}
+	\hfill
+	\raisebox{-4mm}{\usekomavar{fromlogo}}
+}
+% Rücksende-Adresszeile
+\setkomavar{backaddress}{WWU~|~Fachschaftsrat Physik~|~Wilhelm-Klemm-Str.\ 9~|~48149 Münster}
+% Rechtes Absenderfeld (unter FS-Logo)
+\setkomavar{location}{%
+	\scriptsize%
+	\begin{tabular}{@{} r l @{}}
+		& \small Fachschaftsrat Physik \\
+		& \footnotesize c/o Institut für Kernphysik \\[\medskipamount]
+		& Wilhelm-Klemm-Str.\ 9 \\
+		& 48149 Münster \\[\bigskipamount]
+		Bearbeiter & \fachschaftler \\[\medskipamount]
+		Tel. & \usekomavar{fromphone} \\
+		Fax & \usekomavar{fromfax} \\
+		Mail & \usekomavar{fromemail} \\
+	\end{tabular}
+}

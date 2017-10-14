@@ -1,0 +1,47 @@
+% Autor: Simon May
+% Datum: 2015-01-24
+\documentclass[
+	% FS-Brief-Vorlage
+	fachschaft,
+	% Papierformat (A4)
+	a4paper,
+	% Schriftgröße
+	12pt,
+	% Seitengröße korrekt in Ausgabedatei schreiben
+	pagesize,
+	% Sprache (deutsch)
+	german
+]{scrlttr2}
+
+% Bearbeiter/Autor angeben
+\renewcommand{\fachschaftler}{VORNAME NAME}
+% Datum eintragen: \formatdate{dd}{mm}{yyyy}
+\setkomavar{date}{\formatdate{11}{11}{1111}}
+% Betreff eintragen
+\setkomavar{subject}{BETREFF}
+
+\begin{document}
+
+% Adressat angeben
+\begin{letter}{Adressat\\Straße Nr.\\PLZ Ort}
+
+% Anrede
+\opening{Sehr geehrte Damen und Herren,}
+
+...
+
+% Grußformel
+\closing{Mit freundlichen Grüßen,}
+
+% Mögliches PS
+%\ps PS...
+
+% Mögliche Anlagen
+%\encl{Anlagen...}
+
+% Mögliches CC
+%\cc{CC-Empfänger...}
+
+\end{letter}
+
+\end{document}

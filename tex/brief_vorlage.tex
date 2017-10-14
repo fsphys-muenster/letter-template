@@ -1,6 +1,4 @@
 % !TeX program = lualatex
-% Autor: Simon May
-% Datum: 2017-06-19
 \documentclass[
 	% FS-Brief-Vorlage
 	fsphys,
@@ -9,12 +7,14 @@
 	% Schriftgröße
 	12pt,
 	% Sprache (deutsch)
-	ngerman
+	% Auch „german“ muss angegeben werden, damit die Sprache (z.B. in siunitx)
+	% auf Deutsch gestellt wird.
+	german, ngerman
 ]{scrlttr2}
 
 % Bearbeiter/Autor angeben
 \renewcommand{\fachschaftler}{VORNAME NAME}
-% Datum eintragen: \DTMdate{yyyy-mm-dd}
+% Datum eintragen:    \DTMdate{JJJJ-MM-TT}
 \renewcommand{\datum}{\DTMdate{1234-11-11}}
 % Betreff eintragen
 \renewcommand{\betreff}{BETREFF}
@@ -30,7 +30,7 @@
 % Anrede
 \opening{Sehr geehrte Damen und Herren,}
 
-...
+…
 
 % Grußformel
 \closing{Mit freundlichen Grüßen}

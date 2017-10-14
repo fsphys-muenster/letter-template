@@ -1,6 +1,4 @@
-% Autor: Simon May
-% Datum: 2017-06-19
-\ProvidesFile{fsphys.lco}[2017/06/19 lco
+\ProvidesFile{fsphys.lco}[2017/10/14 lco
 	(Simon May, Fachschaft Physik)]
 
 % Pakete und deren Einstellungen
@@ -8,7 +6,9 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 
-\usepackage{unicode-math}
+% Einstellungen der Schriftart (Meta Office Pro) für Text und Mathematik
+% math**=sym angeben, damit auch diese Befehle die Schriftart Meta verwenden
+\usepackage[mathrm=sym, mathit=sym, mathsf=sym, mathbf=sym]{unicode-math}
 \setmainfont{MetaOffcPro}[Path=fonts/,
 	Extension=.ttf,
 	UprightFont=*-Norm,
@@ -25,7 +25,6 @@
 	},
 	BoldItalicFont=*-Bold,
 	BoldItalicFeatures={FakeSlant},
-	Numbers=OldStyle,
 ]
 \setsansfont{MetaOffcPro}[Path=fonts/,
 	Extension=.ttf,
@@ -43,35 +42,25 @@
 	},
 	BoldItalicFont=*-Bold,
 	BoldItalicFeatures={FakeSlant},
-	Numbers=OldStyle,
 ]
 
 \setmathfont{Latin Modern Math}
-\setmathfont[range=up/{greek,Greek,latin,Latin,num}, Path=fonts/,
-	Numbers=Lining]{MetaOffcPro-Norm.ttf}
-\setmathfont[range=it/{greek,Greek,latin,Latin,num}, Path=fonts/,
-	Numbers=Lining]{MetaOffcPro-NormIta.ttf}
-\setmathfont[range=bfup/{greek,Greek,latin,Latin,num}, Path=fonts/,
-	Numbers=Lining]{MetaOffcPro-Bold.ttf}
-% Symbole (leider enthält Meta nicht das Symbol ∓)
-\setmathfont[range={`\+, `\-, `\×, `\÷, `\⋅, `\*, `\/, `\±, `\%, `\‰,
-	`\!, `\?, `\., `\,, `\:, `\;, `\€, `\$, `\£, `\¥, `\&, `\#, `\@, `\§,
-	`\=, `\≠, `\≈, `\<, `\>, `\≤, `\≥, \partial, `\∞},
-	Path=fonts/]{MetaOffcPro-Norm.ttf}
-% XXX Am Ende wieder eine echte Mathe-Schriftart laden (range ist egal),
-% um Fehler in unicode-math/LuaTeX zu umgehen
-% s. https://tex.stackexchange.com/questions/95304
-%    https://github.com/wspr/unicode-math/issues/353
-\setmathfont[range=\int]{Latin Modern Math}
-
-% Schriftart für \mathrm etc. übernehmen
-\setmathfontface\mathrm{FreeSans}
-\setmathfontface\mathit{FreeSans Oblique}
-\setmathfontface\mathbf{FreeSans Bold}
-% Workaround für Bug in unicode-math
-% s. https://github.com/wspr/unicode-math/issues/331
-%    https://github.com/wspr/unicode-math/issues/387
-\let\mathbfup\mathbf
+% Meta Office Pro für die Bereiche nutzen, für die Glyphen existieren
+\setmathfont{MetaOffcPro-Norm.ttf}[Path=fonts/,
+	range=up/{greek,Greek,latin,Latin,num}]
+\setmathfont{MetaOffcPro-NormIta.ttf}[Path=fonts/,
+	range=it/{greek,Greek,latin,Latin,num}]
+\setmathfont{MetaOffcPro-Bold.ttf}[Path=fonts/,
+	range=bfup/{greek,Greek,latin,Latin,num}]
+\setmathfont{MetaOffcPro-Bold.ttf}[Path=fonts/, UprightFeatures={FakeSlant},
+	range=bfit/{greek,Greek,latin,Latin,num}]
+% Symbole (leider enthält Meta Office Pro nicht das Symbol ∓)
+\setmathfont{MetaOffcPro-Norm.ttf}[Path=fonts/,
+	range={`\+, `\-, `\×, `\÷, `\⋅, `\*, `\/, `\⁄, `\±,
+	`\=, `\≠, `\≈, `\<, `\>, `\≤, `\≥, \partial, `\∞, `\†, `\‡,
+	`\%, `\‰, `\!, `\?, `\., `\,, `\:, `\;, `\&, `\#, `\@,
+	`\§, `\€, `\$, `\£, `\¥, `\©, `\®,},
+]
 
 % Spracheinstellung
 \usepackage{polyglossia}
@@ -79,7 +68,7 @@
 
 % Typographische Verbesserungen (Verbot mancher Ligaturen)
 \usepackage{selnolig}
-% Typographische Verbesserungen
+% Typographische Verbesserungen (Mikrotypographie)
 \usepackage{microtype}
 
 % Daten/Zeiten formatieren
@@ -136,6 +125,7 @@
 		pdfauthor={Fachschaftsrat Physik der WWU Münster, \fachschaftler},
 		pdftitle={FS-Brief: \betreff},
 		pdfsubject={Ausgehender Brief der Fachschaft Physik},
+		pdfkeywords={WWU Münster, Fachschaft Physik, Brief},
 		% Links in der PDF-Datei mit Kasten der Breite 0.5pt versehen
 		pdfborder={0 0 0.5}
 	}
@@ -181,7 +171,7 @@
 	\raisebox{-4mm}{\usekomavar{fromlogo}}
 }
 % Rücksende-Adresszeile
-\setkomavar{backaddress}{WWU~|~Fachschaftsrat Physik~|~Wilhelm-Klemm-Str.~9~|~48149 Münster}
+\setkomavar{backaddress}{WWU~| Fachschaftsrat Physik~| Wilhelm-Klemm-Str.~9~| 48149~Münster}
 % Rechtes Absenderfeld (unter FS-Logo)
 \setkomavar{location}{%
 	\scriptsize%
@@ -192,7 +182,7 @@
 		& 48149~Münster \\[\bigskipamount]
 		Bearbeiter & \fachschaftler \\[\medskipamount]
 		Tel. & \usekomavar{fromphone} \\
-		Fax & \usekomavar{fromfax} \\
+		Fax  & \usekomavar{fromfax} \\
 		Mail & \usekomavar{fromemail} \\
 	\end{tabular}
 }

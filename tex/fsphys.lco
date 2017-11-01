@@ -88,7 +88,7 @@
 \usepackage{xcolor}
 % Paket für Bilder-Einbindung (EPS, PNG, JPG, PDF)
 \usepackage{graphicx}
-% .tex-Dateien mit \includegraphics einbiden
+% .tex-Dateien mit \includegraphics einbinden
 \usepackage{gincltex}
 % Bessere Verarbeitung von Dateinamen für \includegraphics etc.
 \usepackage{grffile}
